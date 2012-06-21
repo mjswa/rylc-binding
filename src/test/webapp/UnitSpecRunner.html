@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jasmine Test Runner</title>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="lib/jasmine.css">
+
+  <!-- Libraries -->
+  <script src="lib/jquery.js"></script>
+
+  <!-- Application -->
+  <script src="rylc.js"></script>
+  <script src="app/ApplicationController.js"></script>
+
+  <!-- Test Libraries -->
+  <script src="lib/jasmine.js"></script>
+  <script src="lib/jasmine-html.js"></script>
+
+  <!-- Tests -->
+  <script src="unit/ApplicationControllerSpec.js"></script>
+
+</head>
+<body>
+<script>
+  var trivialReporter = new jasmine.TrivialReporter();
+  jasmine.getEnv().addReporter(trivialReporter);
+  jasmine.getEnv().specFilter = function (spec) {
+    return trivialReporter.specFilter(spec);
+  };
+  jasmine.getEnv().execute();
+</script>
+</body>
+</html>

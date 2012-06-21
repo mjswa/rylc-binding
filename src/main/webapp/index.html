@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+
+  <link rel="stylesheet" href="lib/jquery.mobile.css">
+
+  <!-- make page testable for jasmine ui -->
+  <script>eval(sessionStorage.jasmineui);</script>
+
+  <!-- Libraries -->
+  <script src="lib/jquery.js"></script>
+  <script src="lib/jquery.mobile.js"></script>
+
+  <!-- Application -->
+  <script src="rylc.js"></script>
+  <script src="app/ApplicationController.js"></script>
+  <script src="app/ApplicationControllerBinding.js"></script>
+
+  <title>RYLC</title>
+</head>
+<body>
+
+<div id="loginPage" data-role="page">
+  <div data-role="header">
+    <h1>RYLC - Login</h1>
+  </div>
+  <div data-role="content">
+    <form data-ajax="false">
+      <div data-role="fieldcontain">
+        <label for="loginPage_username">Benutzername</label>
+        <input type="text" id="loginPage_username" name="username">
+      </div>
+      <div data-role="fieldcontain">
+        <label for="loginPage_password">Passwort</label>
+        <input type="password" id="loginPage_password" name="password">
+      </div>
+      <input type="submit" class="login" value="Login">
+    </form>
+  </div>
+</div>
+
+<div id="welcomePage" data-role="page">
+  <div data-role="header">
+    <h1 class="greeting"></h1>
+    <a href="index.html" class="ui-btn-right" data-ajax="false">Logout</a>
+  </div>
+  <div data-role="content">
+    <a href="" data-role="button">Neue Buchung</a>
+    <a href="#rentalHistoryPage" data-role="button">Buchungen</a>
+    <a href="#profilePage" data-role="button">Benutzerprofil</a>
+  </div>
+</div>
+
+<div id="profilePage" data-role="page">
+  <div data-role="header">
+    <h1>Profil von {{customer.name}}</h1>
+    <a href="" data-rel="back">Zur&uuml;ck</a>
+    <a href="index.html" class="ui-btn-right" data-ajax="false">Logout</a>
+  </div>
+  <div data-role="content">
+    <div data-role="fieldcontain">
+      <label for="profilePage_username">Benutzername</label>
+      <input type="text" id="profilePage_username" value="{{username}}" disabled>
+    </div>
+    <div data-role="fieldcontain">
+      <label for="profilePage_name">Name</label>
+      <input type="text" id="profilePage_name" value="{{customer.name}}" disabled>
+    </div>
+    <div data-role="fieldcontain">
+      <label for="profilePage_street">Stra&szlig;e</label>
+      <input type="text" id="profilePage_street" value="{{customer.street}}" disabled>
+    </div>
+    <div data-role="fieldcontain">
+      <label for="profilePage_zip">PLZ</label>
+      <input type="text" id="profilePage_zip" value="{{customer.zip}}" disabled>
+    </div>
+    <div data-role="fieldcontain">
+      <label for="profilePage_city">Ort</label>
+      <input type="text" id="profilePage_city" value="{{customer.city}}" disabled>
+    </div>
+    <div data-role="fieldcontain">
+      <label for="profilePage_email">E-Mail</label>
+      <input type="text" id="profilePage_email" value="{{customer.email}}" disabled>
+    </div>
+  </div>
+</div>
+
+<div id="rentalHistoryPage" data-role="page">
+  <div data-role="header">
+    <h1>Buchungen von <span class="customer"></span></h1>
+    <a href="" data-rel="back">Zur&uuml;ck</a>
+    <a href="index.html" class="ui-btn-right" data-ajax="false">Logout</a>
+  </div>
+  <div data-role="content">
+    <ul data-role="listview" id="rentalHistoryPage_list">
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>
