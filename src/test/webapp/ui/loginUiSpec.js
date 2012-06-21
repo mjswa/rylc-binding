@@ -45,15 +45,4 @@ describeUi('login', '/rylc-binding/index.html', function () {
     });
   });
 
-  it('should greet user after successful login', function () {
-    runs(function () {
-      value("#loginPage_username", someUsername);
-      value("#loginPage_password", somePassword);
-      click(".login");
-    });
-    runs(function () {
-      expect(value(".greeting")).toBe('Hello ' + someUsername);
-    });
-  });
-
 });

@@ -48,6 +48,7 @@ jasmineui.inject(function () {
       throw new Error("No unique element found for " + selector);
     }
     element.click();
+    element.scope().$root.$digest();
   }
 
   function count(selector) {
@@ -85,7 +86,28 @@ jasmineui.inject(function () {
       }
     }
     element.val(value);
-    element.trigger('change');
+    triggerChangeEvent(element);
+    element.scope().$root.$digest();
+  }
+
+  var inputEventSupported = "oninput" in document.createElement('div');
+
+  function triggerChangeEvent(element) {
+    if (element[0].tagName.toLowerCase() === 'input' && inputEventSupported) {
+      element.trigger('input');
+    } else {
+      element.trigger('change');
+    }
+  }
+
+  function formatSimpleDate(date) {
+    var injector = $(document.documentElement).injector();
+    return injector.get("utilsService").formatSimpleDate(date);
+  }
+
+  function formatDate(date) {
+    var injector = $(document.documentElement).injector();
+    return injector.get("utilsService").formatDate(date);
   }
 
   window.activePageId = activePageId;
@@ -96,5 +118,8 @@ jasmineui.inject(function () {
   window.enabled = enabled;
   window.hasValidationError = hasValidationError;
   window.value = value;
+
+  window.formatSimpleDate = formatSimpleDate;
+  window.formatDate = formatDate;
 
 });
