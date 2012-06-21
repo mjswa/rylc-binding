@@ -10,7 +10,7 @@ describe('ApplicationController', function () {
     });
     inject(function ($rootScope, $controller) {
       $scope = $rootScope.$new();
-      $controller("ApplicationController", {$scope:$scope});
+      $controller("rylc.ApplicationController", {$scope:$scope});
     });
   });
 
@@ -25,6 +25,10 @@ describe('ApplicationController', function () {
 
   it('should have an undefined customer after create', function () {
     expect($scope.customer).toBeUndefined();
+  });
+
+  it('should have undefined rentals after create', function () {
+    expect($scope.rentals).toBeUndefined();
   });
 
   describe('loginPossible', function () {
@@ -58,6 +62,28 @@ describe('ApplicationController', function () {
       $scope.login();
       expect($scope.customer).toBeDefined();
       expect($scope.customer.name).toBe("someUsername");
+    });
+  });
+
+  describe('totalPrice', function () {
+    it('should calculate the total price for a given rental', function () {
+      var rental = {
+        car:{
+          price:100
+        },
+        hireStartDate:new Date(2010, 0, 1),
+        hireEndDate:new Date(2010, 0, 10)
+      };
+      expect($scope.totalPrice(rental)).toEqual(10 * 100);
+    });
+  });
+
+  describe('searchRentals', function () {
+    it('should define the rentals array', function () {
+      $scope.searchRentals();
+      expect($scope.rentals).toBeDefined();
+      expect($scope.rentals instanceof Array).toBeTruthy();
+      expect($scope.rentals.length).toBeGreaterThan(0);
     });
   });
 
