@@ -20,6 +20,8 @@ jasmineui.inject(function () {
 
   jqueryMobileSpeedup();
 
+  // -----
+
   function activePage() {
     return $.mobile.activePage;
   }
@@ -100,6 +102,8 @@ jasmineui.inject(function () {
     }
   }
 
+  // -----
+
   function formatSimpleDate(date) {
     var injector = $(document.documentElement).injector();
     return injector.get("utilsService").formatSimpleDate(date);
@@ -109,6 +113,8 @@ jasmineui.inject(function () {
     var injector = $(document.documentElement).injector();
     return injector.get("utilsService").formatDate(date);
   }
+
+  // -----
 
   window.activePageId = activePageId;
   window.activePageScope = activePageScope;
