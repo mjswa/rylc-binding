@@ -20,6 +20,8 @@ jasmineui.inject(function () {
 
   jqueryMobileSpeedup();
 
+  // -----
+
   function activePage() {
     return $.mobile.activePage;
   }
@@ -87,6 +89,8 @@ jasmineui.inject(function () {
     element.val(value);
     element.trigger('change');
   }
+
+  // -----
 
   window.activePageId = activePageId;
   window.activePageScope = activePageScope;
